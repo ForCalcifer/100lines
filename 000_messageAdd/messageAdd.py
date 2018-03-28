@@ -19,18 +19,19 @@ if __name__ == '__main__':
 
 from PIL import Image,ImageFont,ImageDraw
 
-def add_num(in_file, txt, out_file='images/TLM.jpeg'):
-    im = Image.open(in_file)
+def add_num(in_file, txt, out_file):
+    img = Image.open(in_file)
     font = ImageFont.truetype('Library/Fonts/Verdana.ttf', 50)
     #fill_color = '#ff0000'
     fill_color = 'red'
-    draw = ImageDraw.ImageDraw(im)
-    width, height = im.size
+    draw = ImageDraw.ImageDraw(img)
+    width, height = img.size
     draw.text((width-120, 0), txt, fill=fill_color, font=font)
-    im.save(out_file)
+    img.save(out_file)
+    return 0;
 
 if __name__ == '__main__':
-    add_num('images/TLG.jpeg', 'TLG')
+    add_num('images/TLG.jpeg', 'TLG', 'images/TLM.jpeg')
 
 
 
