@@ -29,9 +29,14 @@ def generate(n):
     return [concatenate(4)
             for i in range(n)]
 
+def printout(generate):
+    for i in range(len(generate)):
+        print(generate[i])
+
 
 if __name__ == '__main__':
-    print(generate(10))
+   # print(generate(10))
+    printout(generate(10))
 
 
 
