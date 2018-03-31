@@ -1,34 +1,26 @@
 #coding: utf-8
+import pymysql
 
-from random import choice
-import string
+# 打开数据库连接（ip/数据库用户名/登录密码/数据库名）  
+db = pymysql.connect("192.168.0.126", "root", "1q@W3e4r", "mysql")
+# 使用 cursor() 方法创建一个游标对象 cursor  
+cursor = db.cursor()
 
-def get_code(dict, length, count):
-    for i in range(0, int(count)+1):
-        code = ""
-        for l in range(0, int(length)):
-            code = code + str(choice(dict))
-        print (code)
+# SQL 查询语句  
+sql = "SELECT * FROM user"
 
-if __name__ == "__main__":
-    dict = string.letters+string.digits
-    count = input("请输入激活码个数：")
-    if count == "":
-        count = "1"
-    length = input("请输入激活码长度：")
-    if length == "":
-        length = "8"
+try:
+    # 执行SQL语句  
+    cursor.execute(sql)
+    # 获取所有记录列表  
+    results = cursor.fetchall()
+    for row in results:
+        id = row[0]
+        name = row[1]
+        # 打印结果  
+        print("id=%s,name=%s" % \
+              (id, name))
+except:
+    print("Error: unable to fecth data")
 
-    get_code(dict, length, count)
-'''
-2018-03-30T15:12:18.306363Z 4 [Note] [MY-010454] A temporary password
-is generated for root@localhost: ijmd=f2Xexdk
-
-mysql
-
-mysql> use mysql;
-
-UPDATE user SET authentication_string=PASSWORD('root') WHERE user = 'root';
-
-mysql> exit;
-'''
+    # 关闭数据库连接
