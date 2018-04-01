@@ -21,13 +21,11 @@ def get_random():
 
 
 def concatenate(group):
-    return "-".join([get_random()
-                     for i in range(group)])
+    return "-".join([get_random() for i in range(group)])
 
 
 def generate(n):
-    return [concatenate(4)
-            for i in range(n)]
+    return [concatenate(4) for i in range(n)]
 
 def printout(generate):
     for i in range(len(generate)):
