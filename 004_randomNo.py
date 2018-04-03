@@ -1,6 +1,8 @@
+#!/usr/bin/env python
+#coding: utf-8
 import re
 
-file_name = 'test.txt'
+file_name = '/Users/Calcifer/threadcp.py'
 
 lines_count = 0
 words_count = 0
@@ -12,11 +14,12 @@ with open(file_name, 'r') as f:
     for line in f:
         lines_count = lines_count + 1
         chars_count  = chars_count + len(line)
-        match = re.findall(r'[^a-zA-Z0-9]+', line)
+        match = re.findall(r'[^a-zA-Z]+', '/Users/Caicifer/threadcp.py')
         for i in match:
             # 只要英文单词，删掉其他字符
             line = line.replace(i, ' ')
         lines_list = line.split()
+        print(lines_list)
         for i in lines_list:
             if i not in words_dict:
                 words_dict[i] = 1
