@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+#encoding: utf-8
+import cmd
+import sys
+
+filtered_words_path = '/Users/calcifer/filtered_words.txt'
+
+class CLI(cmd.Cmd):
+
+	def __init__(self):
+
+		cmd.Cmd.__init__(self)
+		self.intro = 'Filtered words Detective'
+		self.words = map(lamda i: i.strip('\n'), open(filtered_words_path).readlines())
+		self.prompt = "> "
+
+	def default(self, line):
+		if any([i in line for i in self.words]):
+			print 'Freedom'
+		else:
+			print 'Human Rights'
+
+	def do_quit(self, arg):
+		exit()
+		return True
+
+if __name__ == '__main__':
+	cli = CLI()
+	cli.cmdloop()
